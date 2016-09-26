@@ -1,0 +1,55 @@
+﻿<Window
+
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MangaDownloaderRevised"
+        xmlns:Classes="clr-namespace:MangaDownloaderRevised.Classes" x:Class="MangaDownloaderRevised.MainWindow"
+       
+        mc:Ignorable="d"
+        Title="MangaDownloader Alpha" Height="395.5" Width="1017">
+    <Window.Resources>
+        <CollectionViewSource x:Key="ItemCollectionViewSource"  CollectionViewType="{x:Type ListCollectionView}"/>
+        <Style  TargetType="{x:Type ListBoxItem}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#FFEC4C4C"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="Khaki"></Setter>
+                    <Setter Property="Foreground" Value="Black"></Setter>
+                </Trigger>
+                <Trigger Property="ItemsControl.IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="Magenta"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0,10,-8,-31">
+        <Label x:Name="label" Content="URL-Address" Height="29" Margin="45,6,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,-0.759" HorizontalAlignment="Left" Width="82"/>
+        <TextBox x:Name="urlBox" HorizontalAlignment="Left" Height="20" Margin="127,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="503" Text="http://www.mangatown.com/manga/tomo_chan_wa_onnanoko/cCHAPTER/SITE.html"/>
+        <TextBox x:Name="chapterBoxA" HorizontalAlignment="Left" Height="20" Margin="13,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41"/>
+        <TextBox x:Name="chapterBoxB" HorizontalAlignment="Left" Height="20" Margin="77,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" RenderTransformOrigin="1.148,2.15"/>
+        <Label x:Name="label_Copy" Content="Chapter " HorizontalAlignment="Left" Height="24" Margin="0,40,0,0" VerticalAlignment="Top" Width="61" RenderTransformOrigin="0.754,0.375"/>
+        <Label x:Name="label_Copy1" Content="-" HorizontalAlignment="Left" Height="25" Margin="59,64,0,0" VerticalAlignment="Top" Width="15" RenderTransformOrigin="-0.169,0.833"/>
+        <Button x:Name="AddManga" Content="Add Manga" HorizontalAlignment="Left" Height="23" Margin="27,173,0,0" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.313,-1.565" Click="AddManga_Click"/>
+        <Button x:Name="DownloadManga" Content="Download" HorizontalAlignment="Left" Height="20" Margin="27,257,0,0" VerticalAlignment="Top" Width="82" RenderTransformOrigin="0.561,-1" Click="DownloadManga_Click" IsEnabled="False"/>
+        <DataGrid x:Name="dataGrid" IsReadOnly="True" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="127,46,0,88" Width="503">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="linkDataGrid" Binding="{Binding LinkName}" Header="Link" />
+                <DataGridTextColumn x:Name="chapterDataGrid" Binding="{Binding ChapterName}" Header="Chapter"/>
+                <DataGridTextColumn x:Name="manganameDataGrid" Binding="{Binding MangaName}"  Header="Manga" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Label x:Name="progressBar" Content="Label" HorizontalAlignment="Left" Margin="59,0,0,54" Width="571" Height="29" VerticalAlignment="Bottom"/>
+        <Button x:Name="clearDataGrid" Content="Clear" HorizontalAlignment="Left" Height="24" Margin="27,214,0,0" VerticalAlignment="Top" Width="82" Click="clearDataGrid_Click"/>
+        <CheckBox x:Name="checkExtraFolder"  HorizontalAlignment="Left" Margin="5,102,0,0" VerticalAlignment="Top" Height="33" Width="117" IsChecked="True">
+            <StackPanel>
+                <TextBlock Width="94"><Run Text="Each Chapter get"/></TextBlock>
+                <TextBlock><Run Text="a own folder"/></TextBlock>
+            </StackPanel>
+        </CheckBox>
+        <Classes:News AlternationCount="2" x:Name="news" Margin="666,10,27,88"/>
+    </Grid>
+</Window>
